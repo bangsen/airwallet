@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdyilian.airwallet.persistence.UserMapper">
+	<cache />
+	<select id="queryUserById" parameterType="long"
+		resultType="com.gdyilian.airwallet.domain.User">
+		select * from user where id = #{id}
+	</select>
+	<insert id="saveUser" parameterType="com.gdyilian.airwallet.domain.User">
+		insert into user
+		(id,username,password,mobileNo,email,address,sex,regDate)
+		values
+		(#{id},#{username},#{password},#{mobileNo},#{email},#{address},#{sex},#{regDate})
+	</insert>
+</mapper>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"       
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!-- - This file is included by the struts.xml file as an example - of how 
+	to break up the configuration file into multiple files. -->
+<struts>
+	<package name="base" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInter"
+				class="com.gdyilian.airwallet.web.LoginInterceptor"></interceptor>
+			<interceptor-stack name="defaultInter">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginInter" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultInter" />
+
+		<global-results>
+			<result name="login">/WEB-INF/page2/index.jsp</result>
+			<result name="myAccount">/WEB-INF/page2/user.jsp</result>
+			<result name="redirectMyAccount" type="redirectAction">myAccount</result>
+		</global-results>
+
+		<action name="HelloWorld" class="com.gdyilian.airwallet.web.action.LangAction">
+			<result>/base/HelloWorld.jsp</result>
+		</action>
+
+		<!-- 登陆 -->
+		<action name="toLogin" class="com.gdyilian.airwallet.web.action.LoginAction"
+			method="toLogin">
+			<result>/WEB-INF/page2/index.jsp</result>
+		</action>
+		<action name="login" class="com.gdyilian.airwallet.web.action.LoginAction">
+			<result name="input">/WEB-INF/page2/index.jsp</result>
+		</action>
+
+		<!-- 登出 -->
+		<action name="logout" method="logout"
+			class="com.gdyilian.airwallet.web.action.LoginAction">
+			<result>/WEB-INF/page2/index.jsp</result>
+		</action>
+
+		<!-- Random验证码 -->
+		<action name="rand"
+			class="com.gdyilian.airwallet.web.action.RandomCodeAction">
+			<interceptor-ref name="defaultStack" />
+			<result type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<!-- 密码 -->
+		<action name="toFindPwd" method="toFind"
+			class="com.gdyilian.airwallet.web.action.PasswordAction">
+			<interceptor-ref name="defaultStack" />
+			<result>/WEB-INF/common/findPwd.jsp</result>
+		</action>
+		<action name="findPwd" method="find"
+			class="com.gdyilian.airwallet.web.action.PasswordAction">
+			<interceptor-ref name="defaultStack" />
+			<result>/WEB-INF/common/autojump.jsp</result>
+			<result name="input">/WEB-INF/common/findPwd.jsp</result>
+		</action>
+		<action name="modifyPwd" method="modify"
+			class="com.gdyilian.airwallet.web.action.PasswordAction">
+			<result name="modifyFail"></result>
+		</action>
+		<action name="createPwd" method="create"
+			class="com.gdyilian.airwallet.web.action.PasswordAction">
+			<result name="createFail"></result>
+		</action>
+
+		<!-- 注册 -->
+		<action name="toRegisterCust" method="toRegisterCust"
+			class="com.gdyilian.airwallet.web.action.RegisterAction">
+			<interceptor-ref name="defaultStack" />
+			<result>/WEB-INF/page2/reg.jsp</result><!-- registerUser.jsp -->
+		</action>
+		<action name="registerCust" method="registerCust"
+			class="com.gdyilian.airwallet.web.action.RegisterAction">
+			<interceptor-ref name="defaultStack" />
+			<!-- registerUser.jsp -->
+			<result name="input">
+				/WEB-INF/page2/reg.jsp
+			</result>
+		</action>
+
+		<action name="myAccount"
+			class="com.gdyilian.airwallet.web.action.MyAccountAction" method="queryBal">
+		</action>
+
+		<action name="*" class="com.gdyilian.airwallet.web.BaseSupport">
+			<result>/WEB-INF/page2/{1}.jsp</result>
+		</action>
+
+	</package>
+	
+	<!-- Add additional package actions here. -->
+	<package name="ajaxPackage" extends="json-default" namespace="/ajax">
+		<action name="queryOrderTest" class="com.gdyilian.airwallet.web.action.OrderAction"
+	method="queryOrder">
+			<result type="json">
+				<param name="root">
+					orderResp.ylTrans
+				</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

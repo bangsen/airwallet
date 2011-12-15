@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"       
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!-- - This file is included by the struts.xml file as an example - of how 
+	to break up the configuration file into multiple files. -->
+<struts>
+	<package name="pay" namespace="/" extends="base">
+		<global-results>
+			<result name="success">/WEB-INF/pages/dnaPayOrder.jsp</result>
+			<result name="fail">/WEB-INF/pages/dnaPayOrder.jsp</result>
+			<result name="input">/WEB-INF/pages/dnaPayOrder.jsp</result>
+			<result name="confirmPay">/WEB-INF/pages/confirmDnaPayOrder.jsp</result>
+		</global-results>
+		<!-- DNA Pay -->
+		<action name="toDnaPayOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="toDnaPayOrder">
+		</action>
+		<action name="dnaPayOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="dnaPayOrder">
+		</action>
+		<action name="toDnaRechargeOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="toDnaRechargeOrder">
+		</action>
+		<action name="dnaRechargeOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="dnaRechargeOrder">
+		</action>
+		<!-- China Pay -->
+		<action name="toCpPayOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="toCpPayOrder">
+		</action>
+		<action name="cpPayOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="cpPayOrder">
+		</action>
+		<action name="toCpRechargeOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="toCpRechargeOrder">
+		</action>
+		<action name="cpRechargeOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="cpRechargeOrder">
+		</action>
+		<action name="toPay4AnotherOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="toPay4AnotherOrder">
+		</action>
+		<!-- Pay for another -->
+		<action name="pay4AnotherOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="pay4AnotherOrder">
+		</action>
+		<action name="toQueryOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="toQueryOrder">
+			<result>/WEB-INF/pages/queryOrder.jsp</result>
+		</action>
+		<!-- Query order -->
+		<action name="queryOrder" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="queryOrder">
+			<result>/WEB-INF/pages/queryOrderResults.jsp</result>
+			<result name="input">/WEB-INF/pages/queryOrderFail.jsp</result>
+		</action>
+		<!-- Pay return -->
+		<action name="payReturn" class="com.gdyilian.airwallet.web.action.OrderAction"
+			method="payReturn">
+			<!-- <result>/WEB-INF/pages/autojump.jsp</result> -->
+			<result>/WEB-INF/pages/ind_601.jsp</result>
+			<result name="fail">/WEB-INF/pages/ind_602.jsp</result>
+		</action>
+	</package>
+</struts>

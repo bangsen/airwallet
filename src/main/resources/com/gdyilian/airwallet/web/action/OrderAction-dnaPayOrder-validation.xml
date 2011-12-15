@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE validators PUBLIC
+          "-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+          "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="orderInfo.mobileNo">
+		<!-- 验证手机号不能为空 -->
+		<field-validator type="requiredstring">
+			<!-- 错误提示信息 -->
+			<message>手机号不能为空</message>
+		</field-validator>
+		
+		<!-- 验证手机号 ^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$-->
+		<field-validator type="regex">
+			<param name="expression">\d+</param>
+			<message>请输入正确的手机号</message>
+		</field-validator>
+		
+	</field>
+
+	<field name="orderInfo.ordId">
+		<field-validator type="requiredstring">
+			<message>订单号不能为空</message>
+		</field-validator>
+		
+		<!-- length 20-->
+		<field-validator type="regex">
+			<param name="expression">\d+</param><!-- \d{20}-->
+			<message>订单号长度应该为20位数字.</message>
+		</field-validator>
+	</field>
+	
+	<field name="orderInfo.accno">
+		<field-validator type="requiredstring">
+			<message>订单号不能为空</message>
+		</field-validator>
+		
+		<!-- length 20-->
+		<field-validator type="regex">
+			<param name="expression">\d+</param><!-- \d{20}-->
+			<message>订单号长度应该为20位数字.</message>
+		</field-validator>
+	</field>
+
+	<field name="orderInfo.transAmt">
+		<field-validator type="requiredstring">
+			<message>交易金额不能为空</message>
+		</field-validator>
+<!-- 		<field-validator type="double"> -->
+<!--               <param name="minInclusive">0.01</param> -->
+<!--               <param name="maxInclusive">999999999999.99</param> -->
+<!--               <message>金额应该在 ${minInclusive} 和 ${maxInclusive}之间 (包含)</message> -->
+<!--           </field-validator> -->
+		<!-- length 12-->
+		<field-validator type="regex">
+			<param name="expression">(\d{1,12})(\.\d{1,2})?</param>
+			<message>请输入交易金额（格式：1－12位， 小数点后可以有两位， 如购买金额为123.99RMB， 请输入123.99）.</message>
+		</field-validator>
+	</field>
+</validators>

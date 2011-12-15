@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+	<!-- 定义时间戳 -->
+	<timestamp key="byDay" datePattern="yyyy-MM-dd" />
+	<!-- 定义控制台输出 -->
+	<appender name="RootConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 定义过滤器 -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>info</level>
+		</filter>
+		<!-- 定义排版格式 -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}, %p, %c, %t, %F, %L %m%n</pattern>
+		</layout>
+	</appender>
+
+	<!-- 单独对指定的日志设定级别 使该日志对象输出地日志级别限定在：“INFO”级别，不受跟级别的限制 -->
+	<!-- <logger name="com.log.testloger" value="INFO"></logger> -->
+
+	<!-- 定义指定文件名称的输出 此处设定的文件名称是动态设置的 即 每天生成一个文件 用于记录当天的文件信息 -->
+	<!-- <appender name="File" class="ch.qos.logback.core.FileAppender">
+		<file>log/airwallet-${byDay}.log</file>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}, %p, %c, %t, %F, %L %m%n</pattern>
+		</layout>
+	</appender> -->
+
+	<appender name="FILERoll"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>log/logFile.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+			<!-- keep 30 days worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<!-- 设置根 的日志级别 -->
+	<root>
+		<level value="debug" />
+		<!-- 不要忘记了对于appender的 引用 根元素是配置文件的入口 -->
+		<appender-ref ref="RootConsoleAppender" />
+<!-- 		<appender-ref ref="File" /> -->
+		<appender-ref ref="FILERoll" />
+	</root>
+</configuration>
