@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdyilian.airwallet.persistence.UserRoleMapper">
+	<cache />
+	
+	<select id="queryUserRoleByRoleId" parameterType="long"
+		resultType="com.gdyilian.airwallet.domain.UserRole">
+		select * from UserRole where roleId = #{roleId}
+	</select>
+	<select id="queryUserRoleByUserId" parameterType="long"
+		resultType="com.gdyilian.airwallet.domain.UserRole" >
+		select * from UserRole where userId = #{userId}
+	</select>
+	<insert id="saveUserRole" parameterType="com.gdyilian.airwallet.domain.UserRole">
+		insert into UserRole
+		(userId,roleId)
+		values
+		(#{userId},#{roleId})
+	</insert>
+</mapper>
