@@ -4,7 +4,7 @@
 	<display-name>AIR WALLET</display-name>
 	<description>Online AIR WALLET Application</description>
 	<distributable />
-	
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:/applicationContext.xml
@@ -47,7 +47,11 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-	
+	<!-- spring SecurityFilterChain -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
 	<!-- For SetCharacterEncodingFilter -->
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
@@ -73,6 +77,10 @@
 		<filter-name>struts-execute</filter-name>
 		<url-pattern>*.html</url-pattern>
 	</filter-mapping>
+<!-- 	<filter> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
+<!-- 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> -->
+<!-- 	</filter> -->
 
 	<!-- Viewing log status messages -->
 	<servlet>

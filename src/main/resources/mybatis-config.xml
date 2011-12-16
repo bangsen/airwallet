@@ -15,5 +15,7 @@
 	</environments> -->
 	<mappers>
 		<mapper resource="com/gdyilian/airwallet/domain/UserMapper.xml" />
+		<mapper resource="com/gdyilian/airwallet/domain/RoleMapper.xml" />
+		<mapper resource="com/gdyilian/airwallet/domain/UserRoleMapper.xml" />
 	</mappers>
 </configuration>

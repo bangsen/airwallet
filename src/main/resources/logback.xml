@@ -30,7 +30,7 @@
 		<file>log/logFile.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- daily rollover -->
-			<fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>log/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
 
 			<!-- keep 30 days worth of history -->
 			<maxHistory>30</maxHistory>
@@ -41,6 +41,13 @@
 			</pattern>
 		</encoder>
 	</appender>
+	
+	<appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+		<syslogHost>${syslogHost}</syslogHost>
+		<facility>${facility}</facility>
+		<suffixPattern>%-4relative [%thread] %-5level - %msg</suffixPattern>
+	</appender>
+	
 	<!-- 设置根 的日志级别 -->
 	<root>
 		<level value="debug" />
@@ -48,5 +55,7 @@
 		<appender-ref ref="RootConsoleAppender" />
 <!-- 		<appender-ref ref="File" /> -->
 		<appender-ref ref="FILERoll" />
+		<appender-ref ref="SYSLOG" />
+		
 	</root>
 </configuration>

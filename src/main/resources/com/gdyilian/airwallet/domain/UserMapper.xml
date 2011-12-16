@@ -5,10 +5,10 @@
 	<cache />
 	<select id="queryUserById" parameterType="long"
 		resultType="com.gdyilian.airwallet.domain.User">
-		select * from user where id = #{id}
+		select * from User where id = #{id}
 	</select>
 	<insert id="saveUser" parameterType="com.gdyilian.airwallet.domain.User">
-		insert into user
+		insert into User
 		(id,username,password,mobileNo,email,address,sex,regDate)
 		values
 		(#{id},#{username},#{password},#{mobileNo},#{email},#{address},#{sex},#{regDate})
